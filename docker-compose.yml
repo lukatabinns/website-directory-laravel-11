@@ -7,7 +7,7 @@ services:
       dockerfile: ./docker/Dockerfile
     command: 'php artisan serve --host=0.0.0.0'
     volumes:
-      - .:/app
+      - ./web-directory:/var/www/html
     ports:
       - 8000:8000
 
@@ -26,10 +26,9 @@ services:
     container_name: Database
     environment:
       MYSQL_DATABASE: "${DB_DATABASE}"
-      MYSQL_USER: "${DB_USERNAME}"
       MYSQL_ROOT: "root"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     volumes:
       - db:/var/lib/mysql
     ports:

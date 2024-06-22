@@ -1,0 +1,145 @@
+{
+    "info": {
+        "name": "Web Directory API",
+        "_postman_id": "your_collection_id",
+        "description": "API for web directory",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "User Registration",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Test User\",\"email\": \"test@example.com\",\"password\": \"password\",\"password_confirmation\": \"password\"}"
+                },
+                "url": {
+                    "raw": "http://localhost/api/register",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "register"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "User Login",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"email\": \"test@example.com\",\"password\": \"password\"}"
+                },
+                "url": {
+                    "raw": "http://localhost/api/login",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "login"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "List Websites",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost/api/websites",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "websites"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Add Website",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer your_access_token"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"url\": \"https://example.com\",\"title\": \"Example\",\"description\": \"Example Description\",\"categories\": [1, 2]}"
+                },
+                "url": {
+                    "raw": "http://localhost/api/websites",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "websites"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Vote for a Website",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer your_access_token"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost/api/websites/{id}/vote",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "websites", "{id}", "vote"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Website",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer your_access_token"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost/api/websites/{id}",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "websites", "{id}"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Search Websites",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost/api/websites/search?search=Laravel&category=PHP",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "path": ["api", "websites", "search"],
+                    "query": [
+                        {
+                            "key": "search",
+                            "value": "Laravel"
+                        },
+                        {
+                            "key": "category",
+                            "value": "PHP"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

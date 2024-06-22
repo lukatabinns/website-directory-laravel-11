@@ -1,47 +1,30 @@
-FROM php:8.2-apache
+FROM php:8.2.0-apache
 
-# Copy virtual host into container
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+WORKDIR /var/www/html
 
-# Enable rewrite mode
+# Mod Rewrite
 RUN a2enmod rewrite
 
-# Install necessary packages
-RUN apt-get update && \
-    apt-get install \
-    libzip-dev \
-    wget \
-    git \
-    unzip \
-    -y --no-install-recommends
+# Linux Library
+RUN apt-get update -y && apt-get install -y \
+    libicu-dev \
+    libmariadb-dev \
+    unzip zip \
+    zlib1g-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev 
 
-# Install PHP Extensions
-RUN docker-php-ext-install zip pdo_mysql
+# Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN pecl install -o -f xdebug-3.1.5 \
-    && docker-php-ext-enable xdebug
-#     && rm -rf /tmp/pear
+COPY . /var/www/html
 
-# Copy composer installable
-COPY ./install-composer.sh ./
+# PHP Extension
+RUN docker-php-ext-install gettext intl pdo_mysql gd
 
-# Copy php.ini
-# COPY ./php.ini /usr/local/etc/php/
-
-# Cleanup packages and install composer
-RUN apt-get purge -y g++ \
-    && apt-get autoremove -y \
-    && rm -r /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
-    && sh ./install-composer.sh \
-    && rm ./install-composer.sh
-
-# Change the current working directory
-WORKDIR /var/www
-
-# Change the owner of the container document root
-RUN chown -R www-data:www-data /var/www
-
-# Start Apache in foreground
-CMD ["apache2-foreground"]
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
