@@ -20,7 +20,6 @@ class VoteController extends Controller
     public function vote(int $id): JsonResponse
     {
         $user = auth()->user();
-        $website = new Website();
         
         if (Vote::where('user_id', $user->id)->where('website_id', $id)->exists()) {
             return response()->json(['message' => 'You have already voted for this website'], 403);
