@@ -1,66 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Web Directory API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a proof-of-concept Restful API built using Laravel, functioning as a web directory. A web directory is an online catalogue where various websites are listed, categorized, and ranked based on user actions. This project includes features such as user authentication, searching, submitting, voting on websites, and administrative controls.
 
-## About Laravel
+## Project Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The purpose of this project is to create a web directory API that allows users to browse, search, submit, and vote on their favorite websites. The API is built with Laravel and uses Laravel Sanctum for authentication.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Categorized Presentation of Websites**: 
+    - Websites are presented in a categorized manner, making it easy for users to find content relevant to their interests.
 
-## Learning Laravel
+2. **Search Functionality**:
+    - Users can search for websites based on a search term. The search works in combination with categories and ranking and is optimized to handle queries efficiently even with a large number of records.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **User Authentication**:
+    - Users can log in and log out, with their interactions being identifiable and linked to them. 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. **Submit Favorite Websites**:
+    - Authenticated users can submit their favorite websites to the directory.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. **Voting System**:
+    - Authenticated users can vote/unvote their favorite websites. Categories will show websites in order of how many votes they have, ensuring the most relevant content is always at the top.
 
-## Laravel Sponsors
+6. **Administrative Controls**:
+    - Administrators can delete websites when needed.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Functional Requirements
 
-### Premium Partners
+- **User Tiers**: 
+    - Three tiers of access: unauthenticated users, authenticated users, and administrators.
+- **Categorized Display**: 
+    - Websites are displayed in a categorized format for easy navigation.
+- **Search Capability**: 
+    - Users can search for websites efficiently, even with a large dataset.
+- **Submission and Voting**: 
+    - Users can submit and vote on websites. Votes determine the ranking within categories.
+- **Administrative Actions**: 
+    - Admins have the ability to delete websites.
+- **Data Relationships**: 
+    - A website can belong to multiple categories.
+- **Vote Limitation**: 
+    - Users can only vote for a website once.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Technical Requirements
 
-## Contributing
+- **Production-grade Code**: 
+    - Code should be written as if for a production system.
+- **Efficiency**: 
+    - Database migrations should consider structure, indexing, and optimizations.
+- **Integration**: 
+    - Consider how a client would consume the API (e.g., a JavaScript SPA).
+- **Documentation**: 
+    - Code should be easy to follow and understand, with appropriate comments.
+- **Scalability**: 
+    - The solution should handle heavy loads and large amounts of data effectively.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Installation
 
-## Code of Conduct
+1. **Clone the repository:**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```sh
+   git clone https://github.com/your-username/web-directory-api.git
+   cd web-directory-api
+   
+2. **Install dependencies:**
 
-## Security Vulnerabilities
+   composer install
+   npm install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Setup environment variables:**
 
-## License
+   Copy the .env.example file to .env and configure your environment variables, especially the database settings.
+   cp .env.example .env
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Generate application key:**
+
+    php artisan key:generate
+
+5. **Run migrations and seeders:**
+
+   php artisan migrate --seed
+   
+6. **Serve the application:**
+
+   php artisan serve
+
+**Usage**
+
+**API Endpoints**
+
+**Public Endpoints**
+
+    . GET /api/categories - List all categories
+    . GET /api/categories/{id} - Get a single category
+
+**Authenticated Endpoints**
+
+    ' POST /api/categories - Create a new category
+    ' PUT /api/categories/{id} - Update a category
+    .DELETE /api/categories/{id} - Delete a category
+    
+**Authentication**
+
+This project uses Laravel Sanctum for API authentication. You can generate tokens and authenticate users using Sanctum's built-in methods.
+
+
+
