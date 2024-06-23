@@ -13,14 +13,14 @@ class WebsiteTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function authenticate()
+    protected function authenticate(): User
     {
         $user = User::factory()->create();
         $this->actingAs($user, 'sanctum');
         return $user;
     }
 
-    public function testListWebsites()
+    public function testListWebsites(): void
     {
         Website::factory()->count(5)->create();
 
@@ -30,7 +30,7 @@ class WebsiteTest extends TestCase
                  ->assertJsonCount(5, 'data');
     }
 
-    public function testAddAWebsite()
+    public function testAddAWebsite(): void
     {
         $user = $this->authenticate();
 
@@ -47,7 +47,7 @@ class WebsiteTest extends TestCase
                  ->assertJsonFragment(['url' => 'https://example.com']);
     }
 
-    public function testVoteForAWebsite()
+    public function testVoteForAWebsite(): void
     {
         $user = $this->authenticate();
 
@@ -64,7 +64,7 @@ class WebsiteTest extends TestCase
         ]);
     }
 
-    public function testDeleteAWebsiteAsAdmin()
+    public function testDeleteAWebsiteAsAdmin(): void
     {
         $user = $this->authenticate();
         $user->is_admin = true;

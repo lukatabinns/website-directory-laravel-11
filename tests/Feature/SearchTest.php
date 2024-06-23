@@ -12,7 +12,7 @@ class SearchTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testSearchWebsitesByTitle()
+    public function testSearchWebsitesByTitle(): void
     {
         Website::factory()->create(['title' => 'Earum cumque qui vel aut.']);
         Website::factory()->create(['title' => 'Exercitationem architecto culpa sit quas nisi.']);
@@ -24,7 +24,7 @@ class SearchTest extends TestCase
                  ->assertJsonMissing(['title' => 'Exercitationem architecto culpa sit quas nisi.']);
     }
 
-    public function testSearchWebsitesByCategory()
+    public function testSearchWebsitesByCategory(): void
     {
         $category = Category::factory()->create(['name' => 'explicabo']);
         $website = Website::factory()->create();

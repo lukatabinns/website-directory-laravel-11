@@ -11,7 +11,7 @@ class CategoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected function authenticate()
+    protected function authenticate(): User
     {
         $user = User::factory()->create();
         $this->actingAs($user, 'sanctum');
@@ -19,7 +19,7 @@ class CategoryTest extends TestCase
     }
 
     // Test the index method
-    public function testIndex()
+    public function testIndex(): void
     {
         Category::factory()->count(3)->create();
 
@@ -30,7 +30,7 @@ class CategoryTest extends TestCase
     }
 
     // Test the store method
-    public function testStore()
+    public function testStore(): void
     {
         $this->auth();
 
@@ -49,7 +49,7 @@ class CategoryTest extends TestCase
     }
 
     // Test the show method
-    public function testShow()
+    public function testShow(): void
     {
         $category = Category::factory()->create();
 
@@ -62,7 +62,7 @@ class CategoryTest extends TestCase
     }
 
     // Test the update method
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $this->auth();
 
@@ -84,7 +84,7 @@ class CategoryTest extends TestCase
     }
 
     // Test the destroy method
-    public function testDestroy()
+    public function testDestroy(): void
     {
         $this->auth();
 
@@ -99,7 +99,8 @@ class CategoryTest extends TestCase
         ]);
     }
 
-    private function auth(){
+    private function auth(): void
+    {
         $user = $this->authenticate();
         $user->is_admin = true;
         $user->save();

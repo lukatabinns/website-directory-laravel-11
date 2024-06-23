@@ -11,7 +11,7 @@ class AuthTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRegisterAUser()
+    public function testRegisterAUser(): void
     {
         $response = $this->postJson('/api/register', [
             'name' => 'Test User',
@@ -24,7 +24,7 @@ class AuthTest extends TestCase
                  ->assertJsonStructure(['access_token', 'token_type']);
     }
 
-    public function testLoginAUser()
+    public function testLoginAUser(): void
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
